@@ -4,18 +4,19 @@
     <v-container fill-height class="custom-container">
        <v-list two-line subheader class="pre-list">
           <v-subheader><div class="title mb-3">Checking Pre-requisites Installation</div></v-subheader>
-          <v-list-tile avatar v-for="(item, index) in config.preItems" :key="item.title" @click="">
+          <v-list-tile avatar v-for="(item, index) in config.items" :key="config[item].title" @click="">
             <v-list-tile-avatar>
-              <img :src="item.icon"/>
+              <img :src="config[item].icon"/>
             </v-list-tile-avatar>
             <v-list-tile-content>
-              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-              <v-list-tile-sub-title>{{ item.subtitle }}</v-list-tile-sub-title>
+              <v-list-tile-title>{{ config[item].title }}</v-list-tile-title>
+              <v-list-tile-sub-title>{{ config[item].subtitle }}</v-list-tile-sub-title>
             </v-list-tile-content>
             <v-list-tile-action>
               <v-btn icon ripple>
-                <v-progress-circular v-if="item.found === false && index === chkIdx" indeterminate :width="3" color="green"></v-progress-circular>
-                 <v-icon v-if="item.found === false" indeterminate color="green darken-2">done</v-icon>
+                <v-progress-circular v-if="config[item].found === null" indeterminate :width="3" color="info"></v-progress-circular>
+                 <v-icon v-else-if="config[item].found === true" indeterminate color="info darken-2">done</v-icon>
+                 <v-icon v-else indeterminate color="info">file_download</v-icon>
               </v-btn>
             </v-list-tile-action>
           </v-list-tile>
@@ -58,15 +59,24 @@ export default {
   },
   methods: {
     ...mapMutations({
-      toggleLoading: 'TOGGLELOADING',
+      install: 'INSTALL',
     }),
     ...mapActions([
       'checkjava',
+      'checkandroid',
     ]),
     startLoading() {
-      console.log(this.checkjava());
-      this.checkjava().then(() => {
-        console.log('found Java');
+      this.checkjava().then((path) => {
+        console.log('Found Java:::');
+        console.log(path);
+      }, () => {
+        this.install('java');
+      }).then(() => {
+        this.checkandroid().then(() => {
+          console.log('Android Checkiunh::::');
+        }, () => {
+          this.install('android');
+        });
       });
     },
     exitCB() {

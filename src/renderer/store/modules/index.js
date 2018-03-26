@@ -8,6 +8,7 @@ const modules = {};
 
 files.keys().forEach((key) => {
   if (key === './index.js') return;
+  console.log(key);
   modules[key.replace(/(\.\/|\.js)/g, '')] = files(key).default;
 });
 

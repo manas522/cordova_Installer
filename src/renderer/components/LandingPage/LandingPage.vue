@@ -8,14 +8,16 @@
           <span class="subheading">Installer will guide you through to fully setup cordova in your machine system</span>
           <v-divider class="my-3"></v-divider>
           <div class="title mb-3">Click Install to begin...</div>
-          <v-flex xs7 offset-xs0 offset-md8 offset-lg class="footer-buttons">
-            <router-link to="/prerequisites"><v-btn large color="primary" class="mx-0">Install</v-btn></router-link>
-            <v-btn large color="primary" class="mx-0" @click="exitCB">Exit</v-btn>
-          </v-flex>
         </v-flex>
       </v-layout>
     </v-container>
   </v-jumbotron>
+  <div class="footer">
+    <v-flex xs7 offset-xs0 offset-md8 offset-lg class="footer-buttons">
+      <router-link to="/prerequisites"><v-btn large color="primary" class="mx-0">Install</v-btn></router-link>
+      <v-btn large color="primary" class="mx-0" @click="exitCB">Exit</v-btn>
+    </v-flex>
+  </div>  
   <popup  :dialog="dialog" :data="popupData" v-if="dialog" @close="closeWindow" @return="returnWindow"></popup>
   </div>
 </template>
@@ -53,9 +55,6 @@
     height: 100%;
     width: 100%;
     background: red;
-    .footer-buttons {
-      margin-top: 75px;
-    }
   }
   
 </style>

@@ -44,7 +44,7 @@
      justify-content: center;
    }
     .header {
-      position: absolute;
+      position: relative;
       width: 100%;
       color: white!important;
       background: #26A69A;
@@ -54,4 +54,6 @@
    }
  }
   /* CSS */
+</style>
+<style>
 </style>

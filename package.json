@@ -108,11 +108,7 @@
     "shelljs": "0.5.3",
     "android-platform-tools": "1.2.0",
     "webpack-hot-middleware": "^2.18.2",
-<<<<<<< HEAD
     "request": "2.85.0",
     "extract-zip": "1.6.6"
-=======
-    "request": "2.85.0"
->>>>>>> 4fc2eb4d38111ecac2e03789f1cd65fe1e2bcb0b
   }
 }
